@@ -1,0 +1,410 @@
+<style>
+/*黑條*/
+.blackout {
+    color: #191919;
+    background-color: #191919;
+  }
+  .blackout:hover {
+    color: white;
+  }
+/* 設定右上角留言按鈕 */
+#comment-app .open-comments {
+    background: transparent;
+}
+.btn-default {
+  background: transparent;
+  border-color: #fff99399;
+}
+.btn-default:hover {
+  background: transparent;
+  -webkit-animation: discolor 5s linear infinite,
+                      glint 2s ease infinite;
+          animation: discolor 5s linear infinite,
+                      glint 2s ease infinite;
+}
+.ui-comment-app .open-comments .btn.ui-open-comments {
+  color: #D14606;
+}
+.ui-comment-app .open-comments .btn.ui-open-comments:hover {
+  color: #fff993;
+}
+/* 設置愛心、收藏、小鈴鐺按鈕 */
+.community-button {
+  color: #D14606;
+}
+.community-button:hover {
+  color: #FFF993;
+  background: transparent;
+  -webkit-animation: discolor 5s linear infinite,
+                      glint 2s ease infinite;
+          animation: discolor 5s linear infinite,
+                      glint 2s ease infinite;
+}
+
+/* h6 date 標籤 */
+.markdown-body h6 em {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+}
+
+/* 目錄 [TOC] */
+.markdown-body .toc > ul {
+    position: relative;
+    padding-top: 40px;
+    padding-bottom: 12px;
+    background: #fff;
+    border-radius: 4px;
+}
+.markdown-body .toc > ul::before {
+    position: absolute;
+    content: '——目錄——';
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    text-shadow: 3px 3px 3px #ca20;
+}
+
+/* 設定圖檔的顯示 */
+.markdown-body img {
+    background-color: transparent;
+    border-radius: 4px;
+}
+
+/* 設定小目錄的背景顏色 */
+.ui-toc-dropdown {
+    background-color: #fff;
+}
+
+/* 設定行動裝置中，小目錄按鈕 */
+.ui-toc-label.btn {
+    background: linear-gradient(180deg, #ca252160 0%, #eca44260 100%);
+    color: #ffffff90;
+}
+.ui-toc-label.btn:hover {
+    background: linear-gradient(180deg, #ca252190 0%, #eca44290 100%);
+    color: #ffffff;
+}
+
+/* 設定小目錄內連結 */
+.ui-toc-dropdown .nav>li>a,
+.toc-menu>a {
+    color: #8E8D8D;
+    font-weight: bold;
+}
+.ui-toc-dropdown .nav>li>a:focus,
+.ui-toc-dropdown .nav>li>a:hover {
+    color: #FFF993;
+    border-left: 1px solid #FFF993;
+}
+
+.ui-toc-dropdown .nav>.active:focus>a,
+.ui-toc-dropdown .nav>.active:hover>a,
+.ui-toc-dropdown .nav>.active>a {
+    color: #FFF993;
+    border-left: 1px solid #FFF993;
+    -webkit-animation: discolor 5s linear infinite,
+                        glint 2s ease infinite;
+            animation: discolor 5s linear infinite,
+                        glint 2s ease infinite;
+}
+
+.toc-menu>a:focus,
+.toc-menu>a:hover {
+    color: #FFF993;
+}
+
+
+
+/* 設定 mark */
+.markdown-body mark {
+    color: #fff;
+    background: #3E8252;
+    border-radius: 4px;
+    margin: 2px;
+}
+/* 設定 strong 粗體 */
+.markdown-body strong {
+    background: #;
+    border-radius: 4px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+/* 設定連結 */
+a,
+.open-files-container li.selected a {
+    color: #9399DD;
+}
+a:hover,
+.open-files-container li.selected a:hover {
+    color: #9399DD;
+}
+
+/* 設定 ins */
+.markdown-body ins {
+    text-decoration: none;
+    text-shadow: 3px 3px 3px #AFAFAF;
+}
+
+
+/* 回到最上面的按鈕 */
+.markdown-body a > .fa-chevron-up {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 4px;
+    border-radius: 4px;
+    color: #fff;
+    background: linear-gradient(180deg, #ca252160 0%, #eca44260 100%);
+}
+.markdown-body a:hover > .fa {
+    background: linear-gradient(180deg, #ca252195 0%, #eca44295 100%);
+    -webkit-animation: discolor 5s linear infinite,
+                        glint 2s ease infinite;
+            animation: discolor 5s linear infinite,
+                        glint 2s ease infinite;
+}
+
+
+/* 動畫 */
+@keyframes discolor {
+    0%, 100% {filter: hue-rotate(0);}
+    50% {filter: hue-rotate(360deg);}
+}
+
+</style>
+# 競賽程式進階技巧
+
+***所有範例程式非唯一正解
+有任何錯誤歡迎糾正***
+這份講義包含`STL`&`sort&searching`
+
+
+---
+
+## vector 
+### vector介紹
+ `vector`算是從基礎語法晉升到競賽程式最明顯的指標了，所以特別的重要，**vector是可以動態改變大小的陣列**，不像傳統陣列開了就不能再修改
+### vector建立
+```cpp
+vector<type> v(size, value);
+• type:資料型態 e.g:int&char
+• size:陣列的初始大小
+• value:陣列的初始值
+```
+*e.g.*
+```cpp=
+//以下語法都是合法的
+vector<int> v1; // v1 = {} 空 的 陣 列
+vector<char> v2; // v2 = {} 空 的 陣 列
+vector<int> v3(5); // v3 = {0, 0, 0, 0, 0}
+vector<int> v4(3, 17); // v4 = {17, 17, 17}
+vector<int> v5 = {4, 8, 7};
+```
+### vector常用語法
+```cpp=
+vector<int> name;
+• name.push_back(val):將 val 加進陣列的最後,O(1)
+• name.pop_back():將陣列最後的元素刪除,O(1)
+• name.size():回傳陣列的大小(無號整數),O(1)
+• name.empty():回傳陣列是否為空,O(1)
+• name.clear():將陣列清空,O(size)
+• name.resize(size, value):
+將陣列的大小設為 size,多出來的部分設為 val,O(Δsize)
+```
+*e.g.*
+```cpp=
+vector<int> v; // v = {}
+v.push_back(5); // v = {5}
+v.push_back(2); // v = {5, 2}
+/***********************************/
+v.resize(5, 3); // v = {5, 2, 3, 3, 3}
+v.size(); // 5
+v.empty(); // false
+/***********************************/
+v.pop_back(); // v = {5, 2, 3, 3}
+v.clear(); // v = {}
+```
+### 二維vector
+二維vector常常被使用來做*linked-list*或圖，完全沒有空間被浪費
+
+*e.g.*
+```cpp=
+vector<vector<int>> v1; // v1 = {} 空 的 矩 陣
+
+vector<vector<int>> v2(3);
+// v2 = { {}, {}, {} } 矩 陣 內 有 三 個 空 的 陣 列
+
+vector<vector<int>> v3(3, vector <int>(2));
+// v3 = { {0, 0}, {0, 0}, {0, 0} }
+
+vector<vector<int>> v4(3, vector <int>(2, 5));
+// v4 = { {5, 5}, {5, 5}, {5, 5} 
+
+//如果您使用的是devc++則改成這樣，否則會報錯
+//                |這裡原本沒空格
+vector<vector<int> > v1;
+```
+*e.g.*
+```cpp=+
+vector<vector<int>> v(3); // v = { {}, {}, {} }
+v[1].push_back(1); // v = { {}, {1}, {} }
+v.push_back({3, 4}); // v = { {}, {1}, {}, {3, 4} }
+```
+## STL
+### 通用語法與庫存函式
+***大部分***都能這樣用所以可以背起來
+![image](https://cdn.discordapp.com/attachments/828527172296900639/1243156600185819207/image.png?ex=6650734e&is=664f21ce&hm=e49bd069fd513c972e368f5bec12432b9a7136016bc02b7ee3c6916010573ab8&)
+![image](https://cdn.discordapp.com/attachments/828527172296900639/1243163738060750848/image.png?ex=665079f4&is=664f2874&hm=16472e987adb358121b97d5c846c3f2a0ecafa486b5ed759b1df3a4e72c3bea0&)
+```cpp=
+vector<int> v = {1, 3, 6, 7, 8}
+//function(L, R, arg),作用於 [L, R) ; L, R可以用v.begin()和v.end()
+• min_element(L, R):陣列最小元素的 iterator,O(n)
+• max_element(L, R):陣列最大元素的 iterator,O(n)
+//以下使用二分搜
+• binary_search(L, R, val): 
+要先排序,回傳是否有找到 val,O(log n)    
+• lower_bound(L, R, val):
+要先排序,陣列數值大於等於 val 的 iterator,O(log n)
+• upper_bound(L, R, val):
+要先排序,陣列數值大於 val 的 iterator,O(log n)
+```
+#### sort
+可以將STL排序，大部分用在vector
+*e.g.*
+```cpp=
+sort(L, R) 以及 vector<int> v={4, 8, 7, 6, 3} 當例子。
+• sort(L, R); //將陣列的 [L, R) 由小到大排序
+• sort(v.begin(), v.end()); //[3, 4, 6, 7, 8]
+• sort(v.begin(), v.begin()+3); //[4, 7, 8, 6, 3]
+• sort(v.begin()+3, v.begin());  //RE
+```
+* `sort`using`*arg` 
+`*arg`是排序方式，傳入一個布林函式，作為比較函式，做到自定義排序
+*e.g.*
+```cpp+
+bool mycmp(int a, int b){
+    return a > b;
+}
+sort(v.begin(), v.end(), greater<int>()); //將陣列從大到小排序
+sort(v.begin(), v.end(), mycmp); //使用自訂義排序
+```
+`mycmp`回傳的布林值是兩個相鄰的資料的關係，讓`sort`函式內部知道要怎麼排序，我們所寫的`a>b`是告訴`sort`函式，**前面的數字要大於後面的數字**，於是`sort`函式就會由大到小排序了
+#### 包裝容器`pair`
+![image alt](https://cdn.discordapp.com/attachments/828527172296900639/1244282772697387049/image.png?ex=66548c22&is=66533aa2&hm=d2816aacc29ffa67125cd43b3bdd11b3abac48510d03d7f27fd2fa527d411098&)
+
+
+
+## 二分搜尋
+
+**非常非常非常重要的演算法**
+:::info
+**可以在極短的時間內找到需要的值
+但只能在==排序好==的資料中使用**
+:::
+
+
+
+**傳統的二分搜過程是：**
+>1. 選擇資料中的中位數
+>2. 若所要的資料大於中位數則丟棄所有小於較小的資料
+>3. 再對大於的資料中繼續找中位數並丟棄不需要的資料
+>4. 直到找到所需的資料
+
+由於二分搜不需要檢查每個資料，只需要折半再折半，因此對比線性搜尋的$O(N)$時間，時間複雜度為$O(\log N)$的二分搜非常<span class=blackout>  　**星爆**  　</span>快
+
+
+---
+
+### 傳統二分搜範例寫法
+要注意維護`左閉右開`或`左開右閉`
+* **遞迴版本**
+```cpp=
+int a[10] = {1, 3, 4, 5, 6, 7, 8, 10, 11, 12};  //已排序好的陣列
+int binerySearch(int l, int r, int val) {       //左;右;要尋找的值
+    if(l+1 == r) return l;                      //找到剩最後一項,回傳答案
+    int mid = (l + r)/2;
+    if(a[mid] > val) {                          //小於找左邊
+        return binerySearch(l, mid, val);
+    }
+    else {                                      //大於找右邊
+        return binerySearch(mid, r, val);
+    }
+}
+```
+
+* **迴圈版本**
+
+```cpp=
+int a[10]={1, 3, 4, 5, 6, 7, 8, 10, 11, 12};  //要搜尋的陣列
+int ans, val=5, l=0, r=9;  //所求在陣列的值，所求，左邊界，右邊界
+while(true){
+    if(l+1 == r){  //刪到只剩下一個值（即答案）
+        ans=l;
+        break;
+    }
+    int mid = (l + r)/2;
+    if(a[mid] > val) r=mid;//小於所求找左邊
+    else l = mid;          //大於所求找右邊
+}
+```
+重點是先找到中間點，如果要找的值大於中點，則找中點的右邊，否則則找中點的左邊，若區間只有一個值，那就是答案了
+
+##
+
+
+**但是要左邊右邊找找去好麻煩
+還要管左閉右開之類的問題**
+
+所以這邊提供一個比較好的二分搜寫法||我平常也用這個||，我稱為跳跳二分搜
+##
+### 跳跳二分搜
+```cpp=
+int a[10]={1, 3, 4, 5, 6, 7, 8, 10, 11, 12};
+int ans=0;
+int val=5;
+for(int j=10;j>0;j>>=1){
+    while(ans+j<10&&a[ans+j]<=val){
+        ans+=j;
+    }
+}
+```
+跟上面的傳統二分搜比起來簡單很多吧!只需要判斷能不能往前跳，如果不能要跳小格一點，等到一次跳的距離變成0格，答案就出來了，時間複雜度也一樣是$O(logN)$ **可是二分搜只能在排序好的陣列中使用欸!** 要怎麼做出排序好的陣列？
+
+---
+
+## 排序
+
+排序演算法有很多
+e.g.`泡沫排序`,`選擇排序`,`快速排序`,`合併排序`,`希爾排序`...非常非常多種，最常使用的是快速排序和合併排序，因為時間複雜度低，只需要$O(NlogN)$，但原理不好理解，如果之後有時間再解釋
+* C++有內建排序函式
+能大幅縮減程式量
+```cpp
+int a[10]={1, 3, 2, 6, 4, 9, 7, 5, 8, 10};
+sort(a, a+10);
+```
+這樣就可以把所有數值都由小到大排好了。
+這個函式有其實有三個參數
+* 第一個是要排序的區間最前面的位置
+* 第二個是要排序的區間最後面的位置的下一個位置
+
+剛剛不是說有三個參數嗎？第三個是什麼？
+**註：第三個非必要**
+
+### 自定義排序
+>第三個是排序方式，傳入一個布林函式，作為比較函式，做到自定義排序
+
+這個函式預設是把數字從小排到大，但如果我要從大到小排呢？
+```cpp=
+bool cmp(int a, int b){
+    return a > b;
+}
+int main(){
+    int a[10]={1, 4, 3, 2, 5, 6, 9, 7, 8, 10};
+    sort(a,a+10,cmp);
+}
+```
+這樣就能做到由大到小排序了，再來我們講講cmp函式的意思
+這個函式回傳的布林值其實是兩個相鄰的資料的關係，讓`sort`函式內部知道要怎麼排序，我們所寫的`a>b`是告訴`sort`函式，**前面的數字要大於後面的數字**，於是`sort`函式就會由大到小排序了
